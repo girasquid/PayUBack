@@ -81,6 +81,7 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
         $this->userGroups = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
