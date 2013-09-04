@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      ~
+    #translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -64,17 +64,3 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
-
-# Elnur Blowfish Encryption Bundle
-elnur_blowfish_password_encoder:
-    cost: 10
-
-# FOS User Bundle 
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class: Ekoed\UserBundle\Entity\User
-    registration:
-        form:
-            type: ekoed_user_registration
-
