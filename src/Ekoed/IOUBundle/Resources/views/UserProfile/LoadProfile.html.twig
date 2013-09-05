@@ -7,7 +7,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 </script>
 {% if app.user %}	
-Hello {{name}}
+Hello {{app.user.username}}
 {% else %}
 {% if error %}
     <div>{{ error|trans }}</div>
