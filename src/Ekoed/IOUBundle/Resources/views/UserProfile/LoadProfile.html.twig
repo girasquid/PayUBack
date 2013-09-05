@@ -1,0 +1,32 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+    
+
+{% block fos_user_content %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+{% if app.user %}	
+Hello {{name}}
+{% else %}
+{% if error %}
+    <div>{{ error|trans }}</div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <label for="username">{{ 'username'|trans }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+    <label for="password">{{ 'password'|trans }}</label>
+    <input type="password" id="password" name="_password" required="required" />
+    <p>
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">{{ 'remember_me'|trans }}</label>
+    </p>
+    <input type="submit" id="_submit" name="_submit" value="{{ 'submit'|trans }}" />
+</form>
+{% endif %}
+
+{% endblock fos_user_content %}
