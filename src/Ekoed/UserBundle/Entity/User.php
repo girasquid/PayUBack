@@ -44,6 +44,24 @@ class User extends BaseUser
     protected $timezone;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="myConnections")
+     * @ORM\JoinTable(name="connections",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="connection_user_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $connectionsWithMe;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="connectionsWithMe")
+     * @ORM\JoinTable(name="connections",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="connection_user_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $myConnections;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -139,5 +157,71 @@ class User extends BaseUser
     public function getTimezone()
     {
         return $this->timezone;
+    }
+
+    /**
+     * Add connectionsWithMe
+     *
+     * @param \Ekoed\UserBundle\Entity\User $connectionsWithMe
+     * @return User
+     */
+    public function addConnectionsWithMe(\Ekoed\UserBundle\Entity\User $connectionsWithMe)
+    {
+        $this->connectionsWithMe[] = $connectionsWithMe;
+    
+        return $this;
+    }
+
+    /**
+     * Remove connectionsWithMe
+     *
+     * @param \Ekoed\UserBundle\Entity\User $connectionsWithMe
+     */
+    public function removeConnectionsWithMe(\Ekoed\UserBundle\Entity\User $connectionsWithMe)
+    {
+        $this->connectionsWithMe->removeElement($connectionsWithMe);
+    }
+
+    /**
+     * Get connectionsWithMe
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConnectionsWithMe()
+    {
+        return $this->connectionsWithMe;
+    }
+
+    /**
+     * Add myConnections
+     *
+     * @param \Ekoed\UserBundle\Entity\User $myConnections
+     * @return User
+     */
+    public function addMyConnection(\Ekoed\UserBundle\Entity\User $myConnections)
+    {
+        $this->myConnections[] = $myConnections;
+    
+        return $this;
+    }
+
+    /**
+     * Remove myConnections
+     *
+     * @param \Ekoed\UserBundle\Entity\User $myConnections
+     */
+    public function removeMyConnection(\Ekoed\UserBundle\Entity\User $myConnections)
+    {
+        $this->myConnections->removeElement($myConnections);
+    }
+
+    /**
+     * Get myConnections
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMyConnections()
+    {
+        return $this->myConnections;
     }
 }

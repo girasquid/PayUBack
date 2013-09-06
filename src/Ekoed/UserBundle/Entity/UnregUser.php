@@ -5,12 +5,12 @@ namespace Ekoed\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserGroup
+ * UnregUser
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class UserGroup
+class UnregUser
 {
     /**
      * @var integer
@@ -24,16 +24,14 @@ class UserGroup
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=128)
+     * @ORM\Column(name="name", type="string", length=196)
      */
     private $name;
 
     /**
-     * @var integer
-     *
      * @ORM\ManyToOne(targetEntity="User")
      */
-    private $groupCreator;
+    private $creator;
 
 
     /**
@@ -50,7 +48,7 @@ class UserGroup
      * Set name
      *
      * @param string $name
-     * @return UserGroup
+     * @return UnregUser
      */
     public function setName($name)
     {
@@ -62,7 +60,7 @@ class UserGroup
     /**
      * Get name
      *
-     * @return string 
+     * @return name
      */
     public function getName()
     {
@@ -70,25 +68,25 @@ class UserGroup
     }
 
     /**
-     * Set groupCreator
+     * Set creator
      *
-     * @param \Ekoed\UserBundle\Entity\User $groupCreator
-     * @return UserGroup
+     * @param \Ekoed\UserBundle\Entity\User $creatorId
+     * @return UnregUser
      */
-    public function setGroupCreator(\Ekoed\UserBundle\Entity\User $groupCreator = null)
+    public function setCreator(\Ekoed\UserBundle\Entity\User $creator = null)
     {
-        $this->groupCreator = $groupCreator;
+        $this->creator = $creator;
     
         return $this;
     }
 
     /**
-     * Get groupCreator
+     * Get creator
      *
      * @return \Ekoed\UserBundle\Entity\User 
      */
-    public function getGroupCreator()
+    public function getCreator()
     {
-        return $this->groupCreator;
+        return $this->creator;
     }
 }

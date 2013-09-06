@@ -91,6 +91,20 @@ class IOU
      */
     private $owee;
 
+    /**
+     * @var References UnregUser
+     *
+     * @ORM\ManyToOne(targetEntity="Ekoed\UserBundle\Entity\UnregUser")
+     */
+    private $unreg_ower;
+
+    /**
+     * @var References UnregUser
+     *
+     * @ORM\ManyToOne(targetEntity="Ekoed\UserBundle\Entity\UnregUser")
+     */
+    private $unreg_owee;
+
 
     /**
      * Get id
@@ -330,5 +344,51 @@ class IOU
     public function getOwee()
     {
         return $this->owee;
+    }
+
+    /**
+     * Set unreg_ower
+     *
+     * @param \Ekoed\UserBundle\Entity\UnregUser $unregOwer
+     * @return IOU
+     */
+    public function setUnregOwer(\Ekoed\UserBundle\Entity\UnregUser $unregOwer = null)
+    {
+        $this->unreg_ower = $unregOwer;
+    
+        return $this;
+    }
+
+    /**
+     * Get unreg_ower
+     *
+     * @return \Ekoed\UserBundle\Entity\UnregUser 
+     */
+    public function getUnregOwer()
+    {
+        return $this->unreg_ower;
+    }
+
+    /**
+     * Set unreg_owee
+     *
+     * @param \Ekoed\UserBundle\Entity\UnregUser $unregOwee
+     * @return IOU
+     */
+    public function setUnregOwee(\Ekoed\UserBundle\Entity\UnregUser $unregOwee = null)
+    {
+        $this->unreg_owee = $unregOwee;
+    
+        return $this;
+    }
+
+    /**
+     * Get unreg_owee
+     *
+     * @return \Ekoed\UserBundle\Entity\UnregUser 
+     */
+    public function getUnregOwee()
+    {
+        return $this->unreg_owee;
     }
 }
