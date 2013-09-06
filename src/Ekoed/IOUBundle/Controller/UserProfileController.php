@@ -16,4 +16,9 @@ class UserProfileController extends Controller
     {
         return array('name' => "22123");
     }
+    public function CreateIOUAction()
+    {
+
+    	response:array("wat"=>"wat");
+    }
 }

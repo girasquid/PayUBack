@@ -1,4 +1,4 @@
-ekoed_iou:
+ekoed_iou:  
     resource: "@EkoedIOUBundle/Controller/"
     type:     annotation
     prefix:   /
@@ -8,6 +8,9 @@ ekoed_user:
     type:     annotation
     prefix:   /
 
+EkoedIOUBundle_create_IOU:
+    path:   /IOUWindow
+    defaults: { _controller:EkoedIOUBundle:UserProfile:CreateIOU }
 # Routing for FOS User Bundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

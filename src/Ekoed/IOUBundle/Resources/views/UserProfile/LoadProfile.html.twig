@@ -5,9 +5,20 @@
 
 {% block fos_user_content %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+$(document).ready(function(){
+	$("#IOUcreation").click(function(){
+		$.POST('{{path('EkoedIOUBundle_create_IOU')}}',
+				{user:app.user.username}
+				function(response){
+				},"json");
+	});
+});
 </script>
 {% if app.user %}	
+
 Hello {{app.user.username}}
+		<input type="submit" id="request" value="create new IOU">
+
 {% else %}
 {% if error %}
     <div>{{ error|trans }}</div>
