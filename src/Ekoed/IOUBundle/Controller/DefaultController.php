@@ -8,5 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
-    
+ 
+ public function CreateIOUAction(){
+
+ 	return array('name' => "22123");
+ }   
+
 }

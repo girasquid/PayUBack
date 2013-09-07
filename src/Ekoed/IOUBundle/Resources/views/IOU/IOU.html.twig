@@ -30,12 +30,11 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	$("#Make_IOU_button").click(function(){
-		$.POST('{{path('EkoedIOUBundle_create_IOU')}})',
+		$.POST('{{path('EkoedIOUBundl_create_IOU')}})',
 		{email:"wat@wat.wat"},
 		function(response){
 		},
 		"json");
-	});
 });
 </script>
 {% if app.user %}	
