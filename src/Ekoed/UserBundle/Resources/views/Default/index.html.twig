@@ -30,12 +30,21 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	$("#Make_IOU_button").click(function(){
-		$.POST('{{path('EkoedIOUBundle_create_IOU')}})',
-		{email:"wat@wat.wat"},
-		function(response){
+		$.post('{{path('EkoedIOUBundle_create_IOU')}})',
+		{ower:$("#ower").val(),
+		 owee:$("#owee").val(),
+		 unit:$("#unit").val(),
+		 amount:$("#amount").val(),
+		 duedate:$("#duedate").val(),
+		 description:$("#description").val(),
 		},
-		"json");
+		function(response){
+		},'json');
 	});
+});
+
+ $(function() {
+$( "#duedate" ).datepicker();
 });
 </script>
 {% if app.user %}	
@@ -45,12 +54,18 @@ Hello {{app.user.username}}
 			<p class="validateTips">All form fields are required.</p>
 			<form>
 			<fieldset>
-			<label for="name">Recipiant</label>
-			<input type="text" name="name" id="Recipiant" class="fieldset text" />
-			<label for="email">Email</label>
-			<input type="text" name="email" id="email" value="" class="fieldset text" />
-			<label for="password">Password</label>
-			<input type="password" name="password" id="password" value="" class="fieldset text" />
+			<label for="ower">Ower</label>
+			<input type="text" name="ower" id="ower" class="fieldset text" />
+			<label for="owee">Owee</label>
+			<input type="text" name="owee" id="owee" value="" class="fieldset text" />
+			<label for="unit">units</label>
+			<input type="text" name="" id="unit" value="" class="fieldset text" />
+			<label for="amount">amount</label>
+			<input type="text" name="amount" id="amount" value="" class="fieldset text" />
+			<label for="due date">duedate</label>
+			<input type="date" name="duedate" id="duedate" value="" class="fieldset text" />
+			<label for="description">Description</label>
+			<input type="text" name="description" id="description" value="" class="fieldset text" />
 			</fieldset>
 			<input type="submit" id="Make_IOU_button" value="Make it!">
 			</form>

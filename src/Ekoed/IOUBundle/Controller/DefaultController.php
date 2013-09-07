@@ -11,7 +11,10 @@ class DefaultController extends Controller
  
  public function CreateIOUAction(){
 
- 	return array('name' => "22123");
+ 	        //prepare the response, e.g.
+        $response = array("Status" => 100, "Data" => $output);
+        //you can return result as JSON
+        return new Response(json_encode($response)); 
  }   
 
 }
