@@ -29,7 +29,7 @@ $(document).ready(function(){
 //Sending the IOU data to the "createIOU" function
 
 $(document).ready(function(){
-	$("#Make_IOU_button").click(function(){
+	$("#Make_IOU_button").click(function(){		
 		$.post('{{path('EkoedIOUBundle_create_IOU')}})',
 		{ower:$("#ower").val(),
 		 owee:$("#owee").val(),
@@ -38,21 +38,23 @@ $(document).ready(function(){
 		 duedate:$("#duedate").val(),
 		 description:$("#description").val(),
 		},
-		function(response){
-		},'json');
+		function(){
+		$("p").text("feelings");
+		},"json");
 	});
 });
 
  $(function() {
 $( "#duedate" ).datepicker();
+$( "#adddate" ).datepicker();
 });
 </script>
 {% if app.user %}	
-
 Hello {{app.user.username}}
 		<div id="dialog" title="Make IOU" style="display:none;">
 			<p class="validateTips">All form fields are required.</p>
 			<form>
+			<input type="submit" id="Make_IOU_button" value="Make it!">
 			<fieldset>
 			<label for="ower">Ower</label>
 			<input type="text" name="ower" id="ower" class="fieldset text" />
@@ -64,14 +66,16 @@ Hello {{app.user.username}}
 			<input type="text" name="amount" id="amount" value="" class="fieldset text" />
 			<label for="due date">duedate</label>
 			<input type="date" name="duedate" id="duedate" value="" class="fieldset text" />
+			<label for="adddate">adddate</label>
+			<input type="date" name="adddate" id="adddate" value="" class="fieldset text" />
 			<label for="description">Description</label>
 			<input type="text" name="description" id="description" value="" class="fieldset text" />
 			</fieldset>
-			<input type="submit" id="Make_IOU_button" value="Make it!">
 			</form>
 		</div>
 		<input type="submit" id="request" value="new IOU">
 
+<p>none</p>
 
 {% else %}
 {% if error %}

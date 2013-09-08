@@ -10,7 +10,7 @@ ekoed_user:
 
 EkoedIOUBundle_create_IOU:
     path:   /IOUWindow
-    defaults: { _controller:EkoedIOUBundle:Defualt:CreateIOU }
+    defaults: { _controller:  EkoedIOUBundle:IOU:CreateIOU }
 # Routing for FOS User Bundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
