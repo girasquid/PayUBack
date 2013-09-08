@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	$("#Make_IOU_button").click(function(){		
-		$.post('{{path('EkoedIOUBundle_create_IOU')}})',
+		$.post('{{path('ekoed_iou_default_createiou')}}',
 		{ower:$("#ower").val(),
 		 owee:$("#owee").val(),
 		 unit:$("#unit").val(),
@@ -53,7 +53,7 @@ $( "#adddate" ).datepicker();
 Hello {{app.user.username}}
 		<div id="dialog" title="Make IOU" style="display:none;">
 			<p class="validateTips">All form fields are required.</p>
-			<form>
+			<form onsubmit="return false;">
 			<input type="submit" id="Make_IOU_button" value="Make it!">
 			<fieldset>
 			<label for="ower">Ower</label>
