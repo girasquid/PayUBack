@@ -18,12 +18,18 @@ class DefaultController extends Controller
      * @Template()
      */
 	public function createIOUAction(){
+			$request = $this->container->get('request');    
+
 			$em = $this->getDoctrine()->getManager();
 	 		$IOU = new IOU();
+	 		// $IOU->setOwer($request->request->get("ower"));
+	 		// $IOU->setOwee($request->request->get("owee"));
 	 		$IOU->setDateAdded(new \DateTime());
-	 		$IOU->setType("liter");
-	 		$IOU->setAmount("100");
-	 		$IOU->setDescription("wat");
+	 		$IOU->setUnits($request->request->get("unit"));
+	 		$IOU->setDateDue(new \DateTime());
+	 		$IOU->setType(1);
+	 		$IOU->setAmount($request->request->get("amount"));
+	 		$IOU->setDescription($request->request->get("description"));
 	 		$IOU->setAutocalcOverride(1);
 	 		$em->persist($IOU);
 	        $em->flush();

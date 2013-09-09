@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /var/www/PayUBack/path/to/install/app/config/routing_dev.yml
