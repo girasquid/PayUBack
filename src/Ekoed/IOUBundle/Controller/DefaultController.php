@@ -18,25 +18,45 @@ class DefaultController extends Controller
      * @Template()
      */
 	public function createIOUAction(){
-			$request = $this->container->get('request');    
+			//if user exists, make iou, else make user and then make it
+	 		// $repository = $this->getDoctrine()->getRepository('EkoedUserBundle:User');
+	 		// $recipient = $respository->findAll('Amir');
+	 		$em = $this->getDoctrine()->getManager();
+			$query = $em->createQuery(
+			    'SELECT u
+			    FROM EkoedUserBundle:user u
+			    WHERE u.name = :name '
+			)->setParameter('name', 'gmir');
 
-			$em = $this->getDoctrine()->getManager();
-	 		$IOU = new IOU();
-	 		// $IOU->setOwer($request->request->get("ower"));
-	 		// $IOU->setOwee($request->request->get("owee"));
-	 		$IOU->setDateAdded(new \DateTime());
-	 		$IOU->setUnits($request->request->get("unit"));
-	 		$IOU->setDateDue(new \DateTime());
-	 		$IOU->setType(1);
-	 		$IOU->setAmount($request->request->get("amount"));
-	 		$IOU->setDescription($request->request->get("description"));
-	 		$IOU->setAutocalcOverride(1);
-	 		$em->persist($IOU);
-	        $em->flush();
-	 	        //prepare the response, e.g.
-	        $response = array("Status" => 100, "Data" => "ADDED");
-	        //you can return result as JSON
-	    	return new Response(json_encode($response)); 
+			$recipient = $query->getResult();
+
+	 		if(!$recipient){
+
+	 			$response = array("Status" => 100, "Data" => "confirm");
+	 			return new Response(json_encode($response)); 
+	 		}else{
+					$request = $this->container->get('request');    
+					$em = $this->getDoctrine()->getManager();
+			 		$IOU = new IOU();
+
+			 		// $IOU->setOwer($request->request->get("ower"));
+			 		// $IOU->setOwee($request->request->get("owee"));
+			 		$IOU->setDateAdded(new \DateTime());
+			 		$IOU->setUnits($request->request->get("unit"));
+			 		$IOU->setDateDue(new \DateTime());
+			 		$IOU->setType(1);
+			 		$IOU->setAmount($request->request->get("amount"));
+			 		$IOU->setDescription($request->request->get("description"));
+			 		$IOU->setAutocalcOverride(1);
+			 		$em->persist($IOU);
+			        $em->flush();
+			 	        //prepare the response, 
+			        $response = array("Status" => 100, "Data" => "ADDED");
+			        //you can return result as JSON
+			    	return new Response(json_encode($response)); 
+
+	 		}
+
 	}   
 
 }
