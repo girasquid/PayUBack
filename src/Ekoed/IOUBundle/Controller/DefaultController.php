@@ -19,14 +19,16 @@ class DefaultController extends Controller
      */
 	public function createIOUAction(){
 			//if user exists, make iou, else make user and then make it
-	 		// $repository = $this->getDoctrine()->getRepository('EkoedUserBundle:User');
-	 		// $recipient = $respository->findAll('Amir');
+
+			$request = $this->container->get('request');    
 	 		$em = $this->getDoctrine()->getManager();
+
+	 		//look for the username
 			$query = $em->createQuery(
 			    'SELECT u
 			    FROM EkoedUserBundle:user u
 			    WHERE u.name = :name '
-			)->setParameter('name', 'gmir');
+			)->setParameter('name', $request->request->get('owee'));
 
 			$recipient = $query->getResult();
 
@@ -35,8 +37,6 @@ class DefaultController extends Controller
 	 			$response = array("Status" => 100, "Data" => "confirm");
 	 			return new Response(json_encode($response)); 
 	 		}else{
-					$request = $this->container->get('request');    
-					$em = $this->getDoctrine()->getManager();
 			 		$IOU = new IOU();
 
 			 		// $IOU->setOwer($request->request->get("ower"));
