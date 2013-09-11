@@ -43,6 +43,14 @@ $(document).ready(function(){
 	});
 });
 
+//managing the IOWE vs UOWE radio boxes
+$('input:radio[name="IOUtype"]').change(
+    function(){
+        if ($(this).is(':checked') && $(this).val() == '') {
+            // append goes here
+        }
+    });
+
  $(function() {
 $( "#duedate" ).datepicker();
 $( "#adddate" ).datepicker();
@@ -58,8 +66,8 @@ Hello {{app.user.username}}
 			<label for="recipient">recipient</label>
 			<input type="text" name="recipient" id="recipient" class="fieldset text" />
 			
-			<input type="radio" name="IO" value="IO">I Owe<br>
-			<input type="radio" name="UO" value="UO">You Owe<br>
+			<input type="radio" name="IOUtype" value="IO">I Owe You<br>
+			<input type="radio" name="IOUtype" value="UO">You Owe Me<br>
 			
 			<label for="unit">units</label>
 			<input type="text" name="" id="unit" value="" class="fieldset text" />
