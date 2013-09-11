@@ -43,7 +43,7 @@ class DefaultController extends Controller
 			 		// $IOU->setOwee($request->request->get("owee"));
 			 		$IOU->setDateAdded(new \DateTime());
 			 		$IOU->setUnits($request->request->get("unit"));
-			 		$IOU->setDateDue(new \DateTime());
+			 		$IOU->setDateDue(new \DateTime($request->request->get("dueDate")));
 			 		$IOU->setType(1);
 			 		$IOU->setAmount($request->request->get("amount"));
 			 		$IOU->setDescription($request->request->get("description"));

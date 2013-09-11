@@ -31,8 +31,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("#Make_IOU_button").click(function(){		
 		$.post('{{path('ekoed_iou_default_createiou')}}',
-		{ower:$("#ower").val(),
-		 owee:$("#owee").val(),
+		{ower:$("#recipient").val(),
 		 unit:$("#unit").val(),
 		 amount:$("#amount").val(),
 		 duedate:$("#duedate").val(),
@@ -56,10 +55,12 @@ Hello {{app.user.username}}
 			<form onsubmit="return false;">
 			<input type="submit" id="Make_IOU_button" value="Make it!">
 			<fieldset>
-			<label for="ower">Ower</label>
-			<input type="text" name="ower" id="ower" class="fieldset text" />
-			<label for="owee">Owee</label>
-			<input type="text" name="owee" id="owee" value="" class="fieldset text" />
+			<label for="recipient">recipient</label>
+			<input type="text" name="recipient" id="recipient" class="fieldset text" />
+			
+			<input type="radio" name="IO" value="IO">I Owe<br>
+			<input type="radio" name="UO" value="UO">You Owe<br>
+			
 			<label for="unit">units</label>
 			<input type="text" name="" id="unit" value="" class="fieldset text" />
 			<label for="amount">amount</label>
