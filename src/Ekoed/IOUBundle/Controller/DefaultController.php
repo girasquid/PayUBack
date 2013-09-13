@@ -17,7 +17,8 @@ class DefaultController extends Controller
      * @Method({"POST"})
      * @Template()
      */
-	public function createIOUAction(){
+	public function createIOUAction()
+	{
 			//if user exists, make iou, else make user and then make it
 
 			$request = $this->container->get('request');    
@@ -57,6 +58,24 @@ class DefaultController extends Controller
 
 	 		}
 
-	}   
+	} 
+
+	/**
+	 * @Route("/iou/edit")
+	 * @Template()
+	 */  
+	public function editIOUAction()
+	{
+		return new Response("Hello World");
+	}
+
+	/**
+	 * @Route("/iou/remove")
+	 * @Template()
+	 */
+	public function removeIOUAction()
+	{
+		return new Response("Hello World");
+	}
 
 }
