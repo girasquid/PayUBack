@@ -69,7 +69,7 @@ $(document).ready(function(){
 
 //ADD CONTACT
 $(document).ready(function(){
-	$("#add").click(function(){
+	$("#add-contact-btn").click(function(){
 		$.post('{{path('ekoed_iou_default_addcontact')}}',
 		{
 			email:"pablo@aimar.ca"
@@ -125,7 +125,7 @@ Hello {{app.user.username}}
 			<lable for="contact">contact email/username </label>
 			<input type="text" id="username">
 		</fieldset>
-
+		<input type="submit" id="add-contact-btn" value="Make it!">
 		</div>
 		<input type="submit" id="request" value="new IOU">
 		<input type="submit" id="add-contact" value="add contact">
