@@ -8,6 +8,11 @@ ekoed_user:
     type:     annotation
     prefix:   /
 
+
+ekoed_iou_default_addcontact:
+    path:   /waasa
+    defaults: { _controller: EkoedUserBundle:User:addContact }
+
 # Routing for FOS User Bundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

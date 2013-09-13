@@ -7,6 +7,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
+//add new contact
 
 //For opening the add IOU window
 $(document).ready(function(){
@@ -26,8 +27,24 @@ $(document).ready(function(){
 	});		
 });
 
+//openning the add contact window
+$(document).ready(function(){
+	$("#add-contact").click(function(){
+		$( "#addContact" ).dialog({
+            autoOpen: false,
+			show: {
+				effect: "blind",
+				duration: 1000
+			},
+			hide: {
+				effect: "explode",
+				duration: 1000
+			}
+		});
+		$("#addContact").dialog("open");
+	});		
+});
 //Sending the IOU data to the "createIOU" function
-
 $(document).ready(function(){
 	if ($("#IOU").attr(':checked')){
 		IOUtype1="IO";
@@ -50,6 +67,22 @@ $(document).ready(function(){
 	});
 });
 
+//ADD CONTACT
+$(document).ready(function(){
+	$("#add").click(function(){
+		$.post('{{path('ekoed_iou_default_addcontact')}}',
+		{
+			email:"pablo@aimar.ca"
+		},
+		function(response){
+			if(response.status="notfound"){
+				//ask for email
+			}else{
+				//yay
+			}
+		},"jason");
+	});
+});
 //managing the IOWE vs UOWE radio boxes
 $('input:radio[name="IOUtype"]').change(
     function(){
@@ -72,10 +105,8 @@ Hello {{app.user.username}}
 			<fieldset>
 			<label for="recipient">recipient</label>
 			<input type="text" name="recipient" id="recipient" class="fieldset text" />
-			
 			<input type="radio" id="IOU" name="IOUtype" value="IO">I Owe You<br>
-			<input type="radio" name="IOUtype" value="UO">You Owe Me<br>
-			
+			<input type="radio" name="IOUtype" value="UO">You Owe Me<br>			
 			<label for="unit">units</label>
 			<input type="text" name="" id="unit" value="" class="fieldset text" />
 			<label for="amount">amount</label>
@@ -89,8 +120,15 @@ Hello {{app.user.username}}
 			</fieldset>
 			</form>
 		</div>
-		<input type="submit" id="request" value="new IOU">
+		<div id="addContact" title="add contact" style="display:none">
+		<fieldset>
+			<lable for="contact">contact email/username </label>
+			<input type="text" id="username">
+		</fieldset>
 
+		</div>
+		<input type="submit" id="request" value="new IOU">
+		<input type="submit" id="add-contact" value="add contact">
 <p>none</p>
 
 {% else %}
