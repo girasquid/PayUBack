@@ -29,9 +29,16 @@ $(document).ready(function(){
 //Sending the IOU data to the "createIOU" function
 
 $(document).ready(function(){
+	if ($("#IOU").attr(':checked')){
+		IOUtype1="IO";
+	}else{
+		IOUtype1="UO";
+	}
 	$("#Make_IOU_button").click(function(){		
 		$.post('{{path('ekoed_iou_default_createiou')}}',
-		{ower:$("#recipient").val(),
+		{
+		 IOUtype:$('input:radio[name=IOUtype]:checked').val(),
+		 ower:$("#recipient").val(),
 		 unit:$("#unit").val(),
 		 amount:$("#amount").val(),
 		 duedate:$("#duedate").val(),
@@ -66,7 +73,7 @@ Hello {{app.user.username}}
 			<label for="recipient">recipient</label>
 			<input type="text" name="recipient" id="recipient" class="fieldset text" />
 			
-			<input type="radio" name="IOUtype" value="IO">I Owe You<br>
+			<input type="radio" id="IOU" name="IOUtype" value="IO">I Owe You<br>
 			<input type="radio" name="IOUtype" value="UO">You Owe Me<br>
 			
 			<label for="unit">units</label>
