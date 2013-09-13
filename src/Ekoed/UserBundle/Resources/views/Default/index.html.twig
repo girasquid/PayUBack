@@ -72,8 +72,12 @@ $(document).ready(function(){
 	$("#add-contact-btn").click(function(){
 		$.post('{{path('ekoed_iou_default_addcontact')}}',
 		{
-			email:"pablo@aimar.ca"
+			IOUcreator:"{{app.user.username}}",
+			email:"asalimi@ualberta.ca",
+			format:"email"
 		},
+		//if the contact is not found in contacts, notify the user
+		//else send the IOU for confirmation
 		function(response){
 			if(response.status="notfound"){
 				//ask for email
