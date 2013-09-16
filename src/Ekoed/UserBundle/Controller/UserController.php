@@ -21,7 +21,7 @@ class UserController extends Controller
 	 		{
 		 		//look for the username
 				$query = $em->createQuery(
-				    'SELECT u.username
+				    'SELECT u
 				    FROM EkoedUserBundle:user u
 				    WHERE u.email = :email '
 				)->setParameter('email', $request->request->get('contact'));
@@ -33,13 +33,11 @@ class UserController extends Controller
 		 			$response = array("Status" => 100, "Data" => "confirm");
 		 			return new Response(json_encode($response)); 
 		 		}else{
-		 				       
-		 				       //  $em = $this->getDoctrine()->getManager();
-						        // $connection = new Connections();
-						        // $connection->setUserID();
-						        // $connection->setConnectionUserID($recipient);
-						        // $em->persist($connection);
-						        // $em->flush();
+		 				       	$user= $this->get('security.context')->getToken()->getUser();
+		 				       	$user->addMyConnection($recipient);
+		 				       	$em->persist($user);
+		 				       	$em->flush();
+		 				       	
 						 	   // prepare the response, 
 						        $response = array("Status" => 100, "Data" => "ADDED");
 						        //you can return result as JSON
@@ -60,13 +58,11 @@ class UserController extends Controller
 		 			$response = array("Status" => 100, "Data" => "confirm");
 		 			return new Response(json_encode($response)); 
 		 		}else{
-		 						
-		 						//  $em = $this->getDoctrine()->getManager();
-						        // $connection = new Connections();
-						        // $connection->setUserID();
-						        // $connection->setConnectionUserID($recipient);
-						        // $em->persist($connection);
-						        // $em->flush();
+		 						$user= $this->get('security.context')->getToken()->getUser();
+		 				       	$user->addMyConnection($recipient);
+		 				       	$em->persist($user);
+		 				       	$em->flush();
+		 				       	
 				 	    //prepare the response, 
 				        $response = array("Status" => 100, "Data" => "ADDED");
 				        //you can return result as JSON
