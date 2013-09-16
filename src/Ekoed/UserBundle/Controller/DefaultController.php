@@ -17,10 +17,7 @@ class DefaultController extends Controller
         return array('name' => "22123");
     }
 
-    /**
-     * @Route("/waasa")
-     * @Template()
-     */
+
     public function addContactAction()
     {
 		//if user exists, make iou, else make user and then make it
@@ -38,7 +35,7 @@ class DefaultController extends Controller
 			$recipient = $query->getResult();
 			//if found, add contact notifier, else ??????
 		 	if(!$recipient) {
-		 		$response = array("Status" => 100, "Data" => "confirm");
+		 		$response = array("Status" => 100, "Data" => "confirmemail");
 		 		return new Response(json_encode($response)); 
 		 	} else {
 			 	    //prepare the response, 
@@ -57,7 +54,7 @@ class DefaultController extends Controller
 			$recipient = $query->getResult();
 		 	if(!$recipient) {
 		 		
-		 		$response = array("Status" => 100, "Data" => "confirm");
+		 		$response = array("Status" => 100, "Data" => "confirm username");
 		 		return new Response(json_encode($response)); 
 		 	} else {
 			 	    //prepare the response, 

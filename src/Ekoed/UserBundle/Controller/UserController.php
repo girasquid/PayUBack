@@ -9,7 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Ekoed\UserBundle\Entity\User as User;
 class UserController extends Controller
-{
+{	
+	    /**
+     * @Route("/waasa")
+     * @Template()
+     */
 
     public function addContactAction()
     {
@@ -30,14 +34,14 @@ class UserController extends Controller
 		 		//if found, add contact notifier, else ??????
 		 		if(!$recipient)
 		 		{
-		 			$response = array("Status" => 100, "Data" => "confirm");
+		 			$response = array("Status" => 100, "Data" => "confirm email");
 		 			return new Response(json_encode($response)); 
 		 		}else{
 		 				       	$user= $this->get('security.context')->getToken()->getUser();
 		 				       	$user->addMyConnection($recipient);
 		 				       	$em->persist($user);
 		 				       	$em->flush();
-		 				       	
+
 						 	   // prepare the response, 
 						        $response = array("Status" => 100, "Data" => "ADDED");
 						        //you can return result as JSON
@@ -55,7 +59,7 @@ class UserController extends Controller
 				$recipient = $query->getResult();
 		 		if(!$recipient){
 		 			
-		 			$response = array("Status" => 100, "Data" => "confirm");
+		 			$response = array("Status" => 100, "Data" => "confirm username");
 		 			return new Response(json_encode($response)); 
 		 		}else{
 		 						$user= $this->get('security.context')->getToken()->getUser();
