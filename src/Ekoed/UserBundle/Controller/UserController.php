@@ -34,7 +34,7 @@ class UserController extends Controller
 		 		//if found, add contact notifier, else ??????
 		 		if(!$recipient)
 		 		{
-		 			$response = array("Status" => 100, "Data" => "confirm email");
+		 			$response = array("Status" => 100, "Data" => "confirmemail");
 		 			return new Response(json_encode($response)); 
 		 		}else{
 		 				       	$user= $this->get('security.context')->getToken()->getUser();
@@ -51,7 +51,7 @@ class UserController extends Controller
 	 		//look for username, if found send notifier
 	 		else{
 				$query = $em->createQuery(
-				    'SELECT u.username
+				    'SELECT u
 				    FROM EkoedUserBundle:user u
 				    WHERE u.username = :username '
 				)->setParameter('username', $request->request->get('contact'));
@@ -59,16 +59,16 @@ class UserController extends Controller
 				$recipient = $query->getResult();
 		 		if(!$recipient){
 		 			
-		 			$response = array("Status" => 100, "Data" => "confirm username");
+		 			$response = array("Status" => 100, "Data" => "confirmusername");
 		 			return new Response(json_encode($response)); 
 		 		}else{
-		 						$user= $this->get('security.context')->getToken()->getUser();
-		 				       	$user->addMyConnection($recipient);
-		 				       	$em->persist($user);
-		 				       	$em->flush();
+		 					 $user= $this->get('security.context')->getToken()->getUser();
+		 				        	$user->addMyConnection($recipient);
+		 				        	$em->persist($user);
+		 				        	$em->flush();
 		 				       	
 				 	    //prepare the response, 
-				        $response = array("Status" => 100, "Data" => "ADDED");
+				        $response = array("Status" => 100, "Data" => $recipient);
 				        //you can return result as JSON
 				    	return new Response(json_encode($response)); 
 		 		}
