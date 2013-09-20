@@ -7,7 +7,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
-//add new contact
+
 
 //For opening the add IOU window
 $(document).ready(function(){
@@ -71,6 +71,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("#add-contact-btn").click(function(){
 		var contacttype;
+	
 		if($("#email").val==""){
 			contacttype="email";
 			recipientVal=$("#email").val();
@@ -84,17 +85,33 @@ $(document).ready(function(){
 			contact:recipientVal,
 			format:contacttype
 		},
+
 		//if the contact is not found in contacts, notify the user
 		//else send the IOU for confirmation
 		function(response){
-			if(response.status="notfound"){
-				//ask for email
+
+			if(response.Data="confirm"){
+				//add new contact
+				$( "#addUser" ).dialog({
+		            autoOpen: false,
+					show: {
+						effect: "blind",
+						duration: 1000
+					},
+					hide: {
+						effect: "explode",
+						duration: 1000
+					}
+				});
+				$("#addUser").dialog("open");		
+
 			}else{
 				//yay
 			}
-		},"jason");
+		},"json");
 	});
 });
+
 
 //managing the IOWE vs UOWE radio boxes
 $('input:radio[name="IOUtype"]').change(
@@ -133,6 +150,7 @@ Hello {{app.user.username}}
 			</fieldset>
 			</form>
 		</div>
+		<!-- ADD CONTACT -->
 		<div id="addContact" title="add contact" style="display:none">
 		<fieldset>
 			<lable for="contact">contact email<label>
@@ -145,6 +163,12 @@ Hello {{app.user.username}}
 		</div>
 		<input type="submit" id="request" value="new IOU">
 		<input type="submit" id="add-contact" value="add contact">
+		<!-- CREATE UNREG USER BY EMAIL -->
+
+			
+			<div id="addUser" title="send request?" style="display:none">
+			<p>waaaaaat</p>
+			</div>
 <p>none</p>
 
 {% else %}

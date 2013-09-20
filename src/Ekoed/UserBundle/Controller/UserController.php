@@ -34,11 +34,11 @@ class UserController extends Controller
 		 		//if found, add contact notifier, else ??????
 		 		if(!$recipient)
 		 		{
-		 			$response = array("Status" => 100, "Data" => "confirmemail");
+		 			$response = array("Status" => 100, "Data" => "confirm");
 		 			return new Response(json_encode($response)); 
 		 		}else{
 		 				       	$user= $this->get('security.context')->getToken()->getUser();
-		 				       	$user->addMyConnection($recipient);
+		 				       	$user->addMyConnection($recipient[0]);
 		 				       	$em->persist($user);
 		 				       	$em->flush();
 
@@ -59,7 +59,7 @@ class UserController extends Controller
 				$recipient = $query->getResult();
 		 		if(!$recipient){
 		 			
-		 			$response = array("Status" => 100, "Data" => "confirmusername");
+		 			$response = array("Status" => 100, "Data" => "confirm");
 		 			return new Response(json_encode($response)); 
 		 		}else{
 		 					$userManager = $this->container->get('fos_user.user_manager');
@@ -78,6 +78,17 @@ class UserController extends Controller
 
 			}
 
+
+	}
+
+	/**
+     * @Route("/user-reg")
+     * @Template()
+     */
+	public function userRegAction(){
+
+
+		$response = array("status"=>200,"Data"=>"wut");
 
 	}   
 
