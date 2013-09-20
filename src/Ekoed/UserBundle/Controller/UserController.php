@@ -62,13 +62,16 @@ class UserController extends Controller
 		 			$response = array("Status" => 100, "Data" => "confirmusername");
 		 			return new Response(json_encode($response)); 
 		 		}else{
+		 					$userManager = $this->container->get('fos_user.user_manager');
+							// $recipient = $userManager->findUserByUsername($recipient);
+
 		 					 $user= $this->get('security.context')->getToken()->getUser();
-		 				        	$user->addMyConnection($recipient);
+		 				        	$user->addMyConnection($recipient[0]);
 		 				        	$em->persist($user);
 		 				        	$em->flush();
 		 				       	
 				 	    //prepare the response, 
-				        $response = array("Status" => 100, "Data" => $recipient);
+				        $response = array("Status" => 100, "Data" => $recipient[0]);
 				        //you can return result as JSON
 				    	return new Response(json_encode($response)); 
 		 		}
